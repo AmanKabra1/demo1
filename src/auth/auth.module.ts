@@ -1,9 +1,9 @@
-import { UserModule } from './../../../n-fundamental/src/users/user.module';
 import { Module } from "@nestjs/common";
 import { PassportLocal } from "./passport.local.strategy";
+import { UsersModule } from "src/users/users.module";
 
 @Module({
-    imports: [UserModule],
+    imports: [UsersModule],
     controllers: [],
     providers: [PassportLocal],
 })
