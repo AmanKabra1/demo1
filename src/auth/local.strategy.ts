@@ -3,8 +3,9 @@ import { UserService } from 'src/users/users.service';
 import { PassportStrategy } from "@nestjs/passport";
 import { Strategy } from "passport-local";
 import { User } from 'src/users/user.entity';
-import { UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 
+@Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy){
     constructor(private readonly userService:UserService){
         super()
@@ -18,6 +19,10 @@ export class LocalStrategy extends PassportStrategy(Strategy){
 
         if(user!= undefined && user.password == password){
             return user
+        }
+
+        else{
+            throw new UnauthorizedException()
         }
     }
 }
